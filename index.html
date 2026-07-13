@@ -199,38 +199,21 @@
           <h2 id="photo-heading">Photo (optional)</h2>
           <p class="hint">
             Useful for litter, balcony storage, damage, etc. Not needed for noise
-            alone. Take a new photo or choose one from your library. Photos cannot
-            be attached automatically — if you add one, attach it in your email app
-            after it opens.
+            alone. On your phone, Choose File usually offers photo library, take
+            photo, or browse files. Photos cannot be attached automatically — if
+            you add one, attach it in your email app after it opens.
           </p>
 
-          <div class="photo-actions">
-            <button type="button" class="secondary photo-btn" id="takePhotoBtn">
-              Take photo
-            </button>
-            <button type="button" class="secondary photo-btn" id="choosePhotoBtn">
-              Choose from library
-            </button>
-          </div>
-
-          <!-- capture forces camera; without it, library / files -->
-          <input
-            type="file"
-            id="photoCamera"
-            class="sr-only"
-            accept="image/*"
-            capture="environment"
-            tabindex="-1"
-            aria-hidden="true"
-          />
-          <input
-            type="file"
-            id="photoLibrary"
-            class="sr-only"
-            accept="image/*"
-            tabindex="-1"
-            aria-hidden="true"
-          />
+          <!-- No capture attribute: OS shows library / camera / files menu -->
+          <label class="field file-field">
+            <span class="label">Add a photo</span>
+            <input
+              type="file"
+              name="photo"
+              id="photo"
+              accept="image/*"
+            />
+          </label>
 
           <div class="photo-preview hidden" id="photoPreviewWrap">
             <img id="photoPreview" alt="Selected photo preview" />
