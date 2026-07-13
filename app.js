@@ -1,11 +1,13 @@
 (function () {
   "use strict";
 
-  var RECIPIENTS = [
-    "zaykhan@lqgroup.org.uk",
-    "concierge@kvmeridiangate.net",
-    "Ruby.Frampton@rendallandrittner.co.uk",
-  ];
+  // Always include concierge + Ruby (Cc when L&Q is To; otherwise To).
+  // L&Q manages Slessor + Courtney only — added on those buildings.
+  // Noble + Deering = other firms (emails TBD via Ruby); until then same as others.
+  var EMAIL_CONCIERGE = "concierge@kvmeridiangate.net";
+  var EMAIL_RUBY = "Ruby.Frampton@rendallandrittner.co.uk";
+  var EMAIL_LQ = "zaykhan@lqgroup.org.uk";
+  var LQ_BUILDINGS = ["Slessor House", "Courtney House"];
 
   var ASB_LABELS = {
     excessive_noise: "Excessive noise",
@@ -164,22 +166,41 @@
     return lines.join("\n");
   }
 
+  function recipientsForBuilding(buildingName) {
+    // Always keep concierge + Ruby on every report.
+    // L&Q only for Slessor + Courtney (not Noble/Deering — different firms, emails TBD).
+    var always = [EMAIL_CONCIERGE, EMAIL_RUBY];
+    var isLq = LQ_BUILDINGS.indexOf(buildingName) !== -1;
+    if (isLq) {
+      return { to: [EMAIL_LQ], cc: always };
+    }
+    return { to: always, cc: [] };
+  }
+
   function buildMailto(body) {
+    var loc = locationLabel();
+    // Route by dropdown value (not free-text "Other" name)
+    var routeBuilding =
+      building.value === "Other" ? "Other" : building.value;
+    var rec = recipientsForBuilding(routeBuilding);
     var subject =
       "Kidbrooke ASB report – " +
-      locationLabel() +
+      loc +
       " – " +
       asbLabel() +
       " – " +
       formatDateDisplay(incidentDate.value);
-    return (
+    var href =
       "mailto:" +
-      RECIPIENTS.join(",") +
+      rec.to.join(",") +
       "?subject=" +
       encodeURIComponent(subject) +
       "&body=" +
-      encodeURIComponent(body)
-    );
+      encodeURIComponent(body);
+    if (rec.cc && rec.cc.length) {
+      href += "&cc=" + encodeURIComponent(rec.cc.join(","));
+    }
+    return href;
   }
 
   function clearInvalid() {
@@ -366,7 +387,7 @@
     buildMailto: function () {
       return buildMailto(buildReportBody());
     },
-    recipients: RECIPIENTS.slice(),
+    recipientsForBuilding: recipientsForBuilding,
     setHasPhoto: function (v) {
       hasPhoto = !!v;
     },

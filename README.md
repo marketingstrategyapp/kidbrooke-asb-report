@@ -9,11 +9,22 @@ Simple static web form for neighbours to report anti-social behaviour. Opens the
 - Optional photo (attach manually in email app)
 - No server storage
 
-## Recipients
+## Recipients (current)
 
-- zaykhan@lqgroup.org.uk
+**Every report** includes:
+
 - concierge@kvmeridiangate.net
 - Ruby.Frampton@rendallandrittner.co.uk
+
+**Also To L&Q** (`zaykhan@lqgroup.org.uk`) when building is:
+
+- Slessor House
+- Courtney House  
+  (To: L&Q, Cc: concierge + Ruby)
+
+**Noble House, Deering House** — other firms; emails TBD from Ruby. Until then: concierge + Ruby only (they forward).
+
+**All other buildings** (Maltby, Grayston, Atcherley, Patshull, Other, etc.): concierge + Ruby only.
 
 ## Run locally
 
