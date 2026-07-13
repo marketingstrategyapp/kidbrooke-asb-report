@@ -26,7 +26,7 @@ Also To L&Q property manager when building is:
 
 (To: L&Q, Cc: Concierge + Rendall and Rittner)
 
-Noble House, Deering House — other firms; emails TBD from Ruby. Until then: Concierge + Rendall and Rittner (they forward).
+Noble House, Deering House — other firms; emails TBD from Rendall and Rittner. Until then: Concierge + Rendall and Rittner (they forward).
 
 All other buildings (Maltby, Grayston, Atcherley, Patshull, Other, etc.): Concierge + Rendall and Rittner only.
 
