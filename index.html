@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Report anti-social behaviour in the Kidbrooke area to local property managers."
+    />
+    <meta name="theme-color" content="#f5f5f7" />
+    <title>Kidbrooke ASB Report</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <p class="eyebrow">Neighbour reporting</p>
+        <h1>Kidbrooke ASB Report</h1>
+        <p class="lede">
+          A simple way to report anti-social behaviour so managers can escalate
+          issues. This is not for emergencies.
+        </p>
+        <p class="emergency">
+          If someone is in danger, call <strong>999</strong>. For non-emergency
+          police matters, call <strong>101</strong>.
+        </p>
+      </header>
+
+      <form id="asb-form" class="card" novalidate>
+        <section class="section" aria-labelledby="about-you">
+          <h2 id="about-you">About you</h2>
+
+          <label class="field">
+            <span class="label">Your name <abbr title="required">*</abbr></span>
+            <input
+              type="text"
+              name="reporterName"
+              id="reporterName"
+              autocomplete="name"
+              required
+              placeholder="Full name"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label"
+              >Your address <abbr title="required">*</abbr></span
+            >
+            <textarea
+              name="reporterAddress"
+              id="reporterAddress"
+              rows="2"
+              required
+              placeholder="Your flat / house and building"
+            ></textarea>
+          </label>
+        </section>
+
+        <section class="section" aria-labelledby="when">
+          <h2 id="when">When</h2>
+
+          <div class="row">
+            <label class="field">
+              <span class="label">Date <abbr title="required">*</abbr></span>
+              <input type="date" name="incidentDate" id="incidentDate" required />
+            </label>
+
+            <label class="field">
+              <span class="label">Time <abbr title="required">*</abbr></span>
+              <input type="time" name="incidentTime" id="incidentTime" required />
+            </label>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="where">
+          <h2 id="where">Where</h2>
+
+          <label class="field">
+            <span class="label"
+              >Building or area <abbr title="required">*</abbr></span
+            >
+            <select name="building" id="building" required>
+              <option value="">Select a building</option>
+              <option value="Maltby House 1-63">Maltby House 1–63</option>
+              <option value="Maltby House 64-103">Maltby House 64–103</option>
+              <option value="Slessor House">Slessor House</option>
+              <option value="Grayston on Ottley Dr">Grayston on Ottley Dr</option>
+              <option value="Grayston on Astell Rd">Grayston on Astell Rd</option>
+              <option value="Deering House">Deering House</option>
+              <option value="Noble House">Noble House</option>
+              <option value="Courtney House">Courtney House</option>
+              <option value="Atcherley House">Atcherley House</option>
+              <option value="Patshull House">Patshull House</option>
+              <option value="Other">Other (type name below)</option>
+            </select>
+          </label>
+
+          <label class="field hidden" id="otherBuildingField">
+            <span class="label"
+              >Other building or area <abbr title="required">*</abbr></span
+            >
+            <input
+              type="text"
+              name="otherBuilding"
+              id="otherBuilding"
+              placeholder="Name of house or area"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Flat or unit number (if known)</span>
+            <input
+              type="text"
+              name="flatNumber"
+              id="flatNumber"
+              placeholder="e.g. 12"
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Where on the building? (optional)</span>
+            <input
+              type="text"
+              name="buildingArea"
+              id="buildingArea"
+              placeholder="e.g. garden, balcony facing Tudway Rd, 2nd floor"
+            />
+          </label>
+
+          <a
+            class="map-link"
+            href="https://www.google.com/maps/@51.4577273,0.0307891,187m/data=!3m1!1e3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View area map
+          </a>
+        </section>
+
+        <section class="section" aria-labelledby="issue">
+          <h2 id="issue">Issue</h2>
+
+          <label class="field">
+            <span class="label"
+              >Type of ASB <abbr title="required">*</abbr></span
+            >
+            <select name="asbType" id="asbType" required>
+              <option value="">Select issue type</option>
+              <option value="excessive_noise">Excessive noise</option>
+              <option value="littering">Littering / fly-tipping</option>
+              <option value="loud_music">Loud music / parties</option>
+              <option value="verbal_abuse">Verbal abuse / intimidation</option>
+              <option value="drug_related">Drug-related activity</option>
+              <option value="vandalism">Vandalism / damage</option>
+              <option value="parking">Parking / vehicle issues</option>
+              <option value="smell_smoke">Smell / smoke / BBQ nuisance</option>
+              <option value="pets">Pets / animal nuisance</option>
+              <option value="communal">Communal area misuse</option>
+              <option value="balcony_storage">
+                Storage items on balcony / clothing
+              </option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <button type="button" class="text-button" id="moreToggle" hidden>
+            More about this issue type
+          </button>
+          <p class="more-detail" id="moreDetail" hidden></p>
+
+          <label class="field hidden" id="otherAsbField">
+            <span class="label"
+              >Describe the issue <abbr title="required">*</abbr></span
+            >
+            <input
+              type="text"
+              name="otherAsb"
+              id="otherAsb"
+              placeholder="Brief description"
+            />
+          </label>
+
+          <label class="field">
+            <span class="label">Additional notes (optional)</span>
+            <textarea
+              name="notes"
+              id="notes"
+              rows="3"
+              placeholder="Anything else that helps managers understand the issue"
+            ></textarea>
+          </label>
+        </section>
+
+        <section class="section" aria-labelledby="photo-heading">
+          <h2 id="photo-heading">Photo (optional)</h2>
+          <p class="hint">
+            Useful for litter, balcony storage, damage, etc. Not needed for noise
+            alone. Photos cannot be attached automatically — if you add one, attach
+            it in your email app after it opens.
+          </p>
+
+          <label class="field file-field">
+            <span class="label">Take photo or choose from library</span>
+            <input
+              type="file"
+              name="photo"
+              id="photo"
+              accept="image/*"
+              capture="environment"
+            />
+          </label>
+
+          <div class="photo-preview hidden" id="photoPreviewWrap">
+            <img id="photoPreview" alt="Selected photo preview" />
+            <button type="button" class="text-button" id="clearPhoto">
+              Remove photo
+            </button>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button type="submit" class="primary" id="submitBtn">
+            Submit report
+          </button>
+          <p class="hint center" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <section class="card confirm hidden" id="confirmPanel">
+        <h2>Almost done</h2>
+        <p id="confirmMessage">
+          Your email app should open with the report ready. Please review and
+          tap <strong>Send</strong>.
+        </p>
+        <p class="hint" id="photoConfirm" hidden>
+          You selected a photo. In your email app, attach that photo from your
+          camera roll or library before sending.
+        </p>
+        <div class="actions stack">
+          <button type="button" class="secondary" id="copyBtn">
+            Copy report text
+          </button>
+          <button type="button" class="text-button" id="againBtn">
+            Report another issue
+          </button>
+        </div>
+        <p class="hint center" id="copyStatus" role="status"></p>
+      </section>
+
+      <footer class="footer">
+        <p>
+          Reports are emailed to L&amp;Q, Meridian Gate concierge, and Rendall
+          &amp; Rittner. Nothing is stored on this website.
+        </p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
