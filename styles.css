@@ -109,6 +109,8 @@ h2 {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 22px 18px 20px;
+  overflow: hidden; /* keep native date/time controls inside the card */
+  max-width: 100%;
 }
 
 .section + .section {
@@ -122,6 +124,8 @@ h2 {
   flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .label {
@@ -141,7 +145,11 @@ input[type="time"],
 input[type="file"],
 select,
 textarea {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: #fafafa;
@@ -152,6 +160,20 @@ textarea {
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     background 0.15s ease;
+}
+
+/* iOS Safari date/time controls have large intrinsic min-widths and overflow cards */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 48px;
+  line-height: 1.25;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.25em;
 }
 
 textarea {
@@ -167,16 +189,15 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
 }
 
+/* Stack date/time full width like Name/Address (avoids iOS overflow in 2-col grid) */
 .row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: block;
+  width: 100%;
+  max-width: 100%;
 }
 
-@media (max-width: 480px) {
-  .row {
-    grid-template-columns: 1fr;
-  }
+.row .field {
+  width: 100%;
 }
 
 .map-link {
