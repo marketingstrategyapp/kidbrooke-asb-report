@@ -1,49 +1,35 @@
 # Kidbrooke ASB Report
 
-Simple static web form for neighbours to report anti-social behaviour. Opens the device email app with a pre-filled report to local property managers.
+Simple form for neighbours to report anti-social behaviour so property managers can escalate issues.
 
 ## Features
 
-- Single screen, clean mobile-first layout
-- Name, address, date, time, building, ASB type
-- Optional photo (attach manually in email app)
-- No server storage
+- Single screen, easy to complete on a phone
+- Date and time (defaults to now)
+- Building / area selection
+- Type of ASB
+- Optional photo
+- Opens your device email app to send the report
+- Nothing is stored on this website
 
 ## Recipients (current)
 
-**Every report** includes:
+Every report includes:
 
-- concierge@kvmeridiangate.net
-- Ruby.Frampton@rendallandrittner.co.uk
+- Concierge Kidbrooke Village Meridian Gate  
+- Rendall and Rittner  
 
-**Also To L&Q** (`zaykhan@lqgroup.org.uk`) when building is:
+Also To L&Q property manager when building is:
 
-- Slessor House
+- Slessor House  
 - Courtney House  
-  (To: L&Q, Cc: concierge + Ruby)
 
-**Noble House, Deering House** — other firms; emails TBD from Ruby. Until then: concierge + Ruby only (they forward).
+(To: L&Q, Cc: Concierge + Rendall and Rittner)
 
-**All other buildings** (Maltby, Grayston, Atcherley, Patshull, Other, etc.): concierge + Ruby only.
+Noble House, Deering House — other firms; emails TBD from Ruby. Until then: Concierge + Rendall and Rittner (they forward).
 
-## Run locally
+All other buildings (Maltby, Grayston, Atcherley, Patshull, Other, etc.): Concierge + Rendall and Rittner only.
 
-Open `index.html` in a browser, or:
+## Share
 
-```bash
-cd kidbrooke-asb-report
-python3 -m http.server 8080
-```
-
-Then visit http://localhost:8080
-
-## GitHub Pages
-
-1. Create a new public repo under **marketingstrategyapp** named `kidbrooke-asb-report`
-2. Push this folder to `main`
-3. Settings → Pages → Deploy from branch `main` / root
-4. Share: `https://marketingstrategyapp.github.io/kidbrooke-asb-report/`
-
-## Privacy
-
-Nothing is stored on the website. Data only leaves the device when the user sends the email.
+https://marketingstrategyapp.github.io/kidbrooke-asb-report/
