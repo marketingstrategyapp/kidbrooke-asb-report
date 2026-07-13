@@ -199,20 +199,38 @@
           <h2 id="photo-heading">Photo (optional)</h2>
           <p class="hint">
             Useful for litter, balcony storage, damage, etc. Not needed for noise
-            alone. Photos cannot be attached automatically — if you add one, attach
-            it in your email app after it opens.
+            alone. Take a new photo or choose one from your library. Photos cannot
+            be attached automatically — if you add one, attach it in your email app
+            after it opens.
           </p>
 
-          <label class="field file-field">
-            <span class="label">Take photo or choose from library</span>
-            <input
-              type="file"
-              name="photo"
-              id="photo"
-              accept="image/*"
-              capture="environment"
-            />
-          </label>
+          <div class="photo-actions">
+            <button type="button" class="secondary photo-btn" id="takePhotoBtn">
+              Take photo
+            </button>
+            <button type="button" class="secondary photo-btn" id="choosePhotoBtn">
+              Choose from library
+            </button>
+          </div>
+
+          <!-- capture forces camera; without it, library / files -->
+          <input
+            type="file"
+            id="photoCamera"
+            class="sr-only"
+            accept="image/*"
+            capture="environment"
+            tabindex="-1"
+            aria-hidden="true"
+          />
+          <input
+            type="file"
+            id="photoLibrary"
+            class="sr-only"
+            accept="image/*"
+            tabindex="-1"
+            aria-hidden="true"
+          />
 
           <div class="photo-preview hidden" id="photoPreviewWrap">
             <img id="photoPreview" alt="Selected photo preview" />

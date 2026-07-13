@@ -58,7 +58,10 @@
   var otherAsb = document.getElementById("otherAsb");
   var moreToggle = document.getElementById("moreToggle");
   var moreDetail = document.getElementById("moreDetail");
-  var photo = document.getElementById("photo");
+  var photoCamera = document.getElementById("photoCamera");
+  var photoLibrary = document.getElementById("photoLibrary");
+  var takePhotoBtn = document.getElementById("takePhotoBtn");
+  var choosePhotoBtn = document.getElementById("choosePhotoBtn");
   var photoPreviewWrap = document.getElementById("photoPreviewWrap");
   var photoPreview = document.getElementById("photoPreview");
   var clearPhoto = document.getElementById("clearPhoto");
@@ -280,8 +283,11 @@
       : "More about this issue type";
   });
 
-  photo.addEventListener("change", function () {
-    var file = photo.files && photo.files[0];
+  function applyPhotoFile(file, sourceInput) {
+    // Clear the other input so only one selection is active
+    if (sourceInput !== photoCamera) photoCamera.value = "";
+    if (sourceInput !== photoLibrary) photoLibrary.value = "";
+
     if (!file) {
       hasPhoto = false;
       photoPreviewWrap.classList.add("hidden");
@@ -292,10 +298,29 @@
     var url = URL.createObjectURL(file);
     photoPreview.src = url;
     photoPreviewWrap.classList.remove("hidden");
+  }
+
+  takePhotoBtn.addEventListener("click", function () {
+    photoCamera.click();
+  });
+
+  choosePhotoBtn.addEventListener("click", function () {
+    photoLibrary.click();
+  });
+
+  photoCamera.addEventListener("change", function () {
+    var file = photoCamera.files && photoCamera.files[0];
+    applyPhotoFile(file, photoCamera);
+  });
+
+  photoLibrary.addEventListener("change", function () {
+    var file = photoLibrary.files && photoLibrary.files[0];
+    applyPhotoFile(file, photoLibrary);
   });
 
   clearPhoto.addEventListener("click", function () {
-    photo.value = "";
+    photoCamera.value = "";
+    photoLibrary.value = "";
     hasPhoto = false;
     photoPreviewWrap.classList.add("hidden");
     photoPreview.removeAttribute("src");
