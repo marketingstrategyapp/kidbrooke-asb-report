@@ -2,12 +2,14 @@
   "use strict";
 
   // Always include concierge + Ruby (Cc when L&Q is To; otherwise To).
-  // L&Q manages Slessor + Courtney only — added on those buildings.
-  // Noble + Deering = other firms (emails TBD via Ruby); until then same as others.
+  // L&Q manages Slessor + Courtney only.
+  // Slessor House reports go to Kani Pickersgill; Courtney House to Zayna.
+  // Deering House reports also go to Southern Housing.
   var EMAIL_CONCIERGE = "concierge@kvmeridiangate.net";
   var EMAIL_RUBY = "Ruby.Frampton@rendallandrittner.co.uk";
-  var EMAIL_LQ = "zaykhan@lqgroup.org.uk";
-  var LQ_BUILDINGS = ["Slessor House", "Courtney House"];
+  var EMAIL_LQ_SLESSOR = "kanipickersgill@lqgroup.org.uk";
+  var EMAIL_LQ_COURTNEY = "zaykhan@lqgroup.org.uk";
+  var EMAIL_SOUTHERN = "hello.southernhousing.org.uk";
 
   var ASB_LABELS = {
     excessive_noise: "Excessive noise",
@@ -168,11 +170,15 @@
 
   function recipientsForBuilding(buildingName) {
     // Always keep concierge + Ruby on every report.
-    // L&Q only for Slessor + Courtney (not Noble/Deering — different firms, emails TBD).
     var always = [EMAIL_CONCIERGE, EMAIL_RUBY];
-    var isLq = LQ_BUILDINGS.indexOf(buildingName) !== -1;
-    if (isLq) {
-      return { to: [EMAIL_LQ], cc: always };
+    if (buildingName === "Slessor House") {
+      return { to: [EMAIL_LQ_SLESSOR], cc: always };
+    }
+    if (buildingName === "Courtney House") {
+      return { to: [EMAIL_LQ_COURTNEY], cc: always };
+    }
+    if (buildingName === "Deering House") {
+      return { to: always.concat([EMAIL_SOUTHERN]), cc: [] };
     }
     return { to: always, cc: [] };
   }
